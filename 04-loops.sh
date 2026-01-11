@@ -6,45 +6,41 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
+LOG_FLODER= "/var/log/shellscript.logs"
+SCRIPT_NAME= $(echo $0 | cut -d "." -f1)
+LOG_FILE= "$LOG_FLODER/$SCRIPT_LOG .log"
+PACKAGES=("mysql" "nginx" "python3")
+
+mkdir -p $LOG_FLODER
+echo "script started executing at : $(date)" | tee -a $LOG_FILE
+
 
 if [ $USERID -ne 0 ]
 then 
-    echo -e " $R ERROR:: please run script with root access $N "
+    echo -e " $R ERROR:: please run script with root access $N " | tee -a $LOG_FILE
     exit 1
 else
-    echo -e  " $G you are already run the script with root access $N "
+    echo -e  " $G you are already run the script with root access $N " | tee -a $LOG_FILE
 fi
 
 VALIDATE(){
     if [ $1 -eq 0 ]
     then
-    echo -e " $G $2 is installed ------ install sucessfully $N"
+    echo -e " $G $2 is installed ------ install sucessfully $N" | tee -a $LOG_FILE
     else
-    echo -e  " $R $2 is not installed ----- failure $N"
+    echo -e  " $R $2 is not installed ----- failure $N" | tee -a $LOG_FILE
     exit 1
     fi
 
 }
-dnf list installed mysql
-if [ $? -ne 0 ]
-then
-    echo -e  "$R if mysql is not installed ------ please install $N"
-    
-    dnf install mysql -y
-    VALIDATE $? "mysql"
-   
-else
-    echo  -e " $Y if mysql is installed ------- nothing to do $N"
-fi
+for package in $@
+do
 
-dnf list installed nginx
-if [ $? -ne 0 ]
-then
-    echo -e  "$R if nginx is not installed ------ please install $N"
-    
-    dnf install nginx -y
-    VALIDATE $? "nginx"
+dnf list installed $package & >> LOG_FILE
+dnf install $package -y & >> LOG_FILE
+    VALIDATE $? "$package"
    
 else
-    echo  -e " $Y if nginx is installed ------- nothing to do $N"
+    echo  -e " $Y if $pacakge is installed ------- nothing to do $N" | tee -a $LOG_FILE
 fi
+done
