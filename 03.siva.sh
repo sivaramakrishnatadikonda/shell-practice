@@ -41,10 +41,10 @@ then
 
     dnf install mysql -y
 
-      if [ $? - ne 0 ]
+      if [ $? - eq 0 ]
     then
         echo "mysql installed -------- sucessfully"
-        
+
     else
         echo "mysql not installed ------ failure"
         exit 1
@@ -64,7 +64,7 @@ then
 
     dnf install python3 -y
 
-      if [ $? - ne 0 ]
+      if [ $? - eq 0 ]
     then
         echo "python installed -------- sucessfully"
     else
