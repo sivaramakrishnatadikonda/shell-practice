@@ -12,7 +12,7 @@ else
 fi
 VALIDATE(){
 
-    if [ $1 - neq 0 ]
+    if [ $1 - ne 0 ]
     then 
         echo "installed $2 is success"
     else

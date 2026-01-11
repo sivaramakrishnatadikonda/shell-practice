@@ -75,5 +75,5 @@ then
 
 else
     echo "python is installed nothing to do"
-    exit 1
+     
 fi
