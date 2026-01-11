@@ -6,7 +6,7 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
-LOG_FLODER= "/var/log/shellscript.logs"
+LOG_FLODER= "/var/log/loops.logs"
 SCRIPT_NAME= $(echo $0 | cut -d "." -f1)
 LOG_FILE= "$LOG_FLODER/$SCRIPT_NAME .log"
 PACKAGES=("mysql" "nginx" "python")
