@@ -38,9 +38,5 @@ do
 
 dnf list installed $package & >> LOG_FILE
 dnf install $package -y & >> LOG_FILE
-    VALIDATE $? "$package"
-   
-else
-    echo  -e " $Y if $pacakge is installed ------- nothing to do $N" | tee -a $LOG_FILE
-fi
+VALIDATE $? "$package"
 done
