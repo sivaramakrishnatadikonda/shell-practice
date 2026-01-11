@@ -8,8 +8,8 @@ N="\e[0m"
 
 LOG_FOLDER= "/var/log/shellscript.logs"
 SCRIPT_NAME= $(echo $0 | cut -d "." -f1)
-LOG_FILE= "$LOG_FOLDER/$SCRIPT_NAME .log"
-PACKAGES=("mysql" "nginx" "python")
+LOG_FILE= " $LOG_FOLDER/$SCRIPT_NAME .log "
+PACKAGES=("mysql" "nginx" "python3")
 
 mkdir -p $LOG_FOLDER
 echo "script started executing at : $(date)" | tee -a $LOG_FILE
@@ -23,13 +23,15 @@ else
     echo -e  " $G you are run script with root access $N " | tee -a $LOG_FILE
 fi
 
-VALIDATE(){
-    if [ $1 -eq 0 ]
+VALIDATE () {
+    if [ $1 -ne 0 ]
     then
     echo -e " $G $2 is installed ------ install sucessfully $N" | tee -a $LOG_FILE
+    
     else
     echo -e  " $R $2 is not installed ----- failure $N" | tee -a $LOG_FILE
     exit 1
+   
     fi
 
 }
