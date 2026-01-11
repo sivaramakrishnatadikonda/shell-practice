@@ -45,7 +45,7 @@ dnf list installed nginx
         echo "nginx is not installed install"
         dnf install nginx -y
         VALIDATE $? "nginx"
-    else
-        echo "nothing to do"
-        exit 1
+else
+    echo "nothing to do"
+    exit 1
 fi
