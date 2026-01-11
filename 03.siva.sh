@@ -14,7 +14,7 @@ fi
 
 dnf list installed nginx
 
-if [ $? - ne 0 ]
+if [ $? -ne 0 ]
 then    
     echo "nginx is not installed please install"
 
@@ -35,13 +35,13 @@ fi
 
 dnf list installed mysql
 
-if [ $? - ne 0 ]
+if [ $? -ne 0 ]
 then    
     echo "mysql is not installed please install"
 
     dnf install mysql -y
 
-      if [ $? - eq 0 ]
+      if [ $? -eq 0 ]
     then
         echo "mysql installed -------- sucessfully"
 
@@ -58,13 +58,13 @@ fi
 
 dnf list installed python3
 
-if [ $? - ne 0 ]
+if [ $? -ne 0 ]
 then    
     echo "puthon is not installed please install"
 
     dnf install python3 -y
 
-      if [ $? - eq 0 ]
+      if [ $? -eq 0 ]
     then
         echo "python installed -------- sucessfully"
     else

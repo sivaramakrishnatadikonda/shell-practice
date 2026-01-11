@@ -14,7 +14,7 @@ fi
 
 VALIDATION(){
 
-    if [ $1 - ne 0 ]
+    if [ $1 -ne 0 ]
     then
         echo "installation $2 is sucess"
     else
@@ -26,7 +26,7 @@ VALIDATION(){
 
 dnf list installed mysql
 
-if [ $? - ne 0 ]
+if [ $? -ne 0 ]
 then
     echo "mysql is not installed ----installed sucess"
 
@@ -40,7 +40,7 @@ else
 
 
 dnf list installed nginx
-    if [ $? - ne 0 ]
+    if [ $? -ne 0 ]
     then   
         echo "nginx is not installed install"
         dnf install nginx -y

@@ -12,7 +12,7 @@ else
 fi
 VALIDATE(){
 
-    if [ $1 - ne 0 ]
+    if [ $1 -ne 0 ]
     then 
         echo "installed $2 is success"
     else
@@ -25,7 +25,7 @@ dnf list installed mysql
 # check already installed or not. if installed $? is 0
 # not installed $? is not 0.expression is true
 
-if [ $? - ne 0 ]
+if [ $? -ne 0 ]
 
 then 
     echo "MYSQL is not installed ------ going to install "
