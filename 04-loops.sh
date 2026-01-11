@@ -28,4 +28,5 @@ then
     echo -e " $G mysql is installed ------ install sucessfully $N"
 else
     echo -e  " $R mysql is not installed ----- failure $N"
+    exit 1
 fi
