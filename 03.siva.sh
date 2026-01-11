@@ -38,4 +38,18 @@ else
     exit 1
 fi
 
+dnf list installed mysql
+
+if [ $? - ne 0 ]
+then    
+    echo "mysql is not installed please install"
+
+    dnf install mysql -y
+
+    VALIDATE $? "mysql"
+
+else
+    echo "mysql is installed nothing to do"
+    exit 1
+fi
 
