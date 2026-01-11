@@ -47,4 +47,5 @@ dnf list installed nginx
         VALIDATE $? "nginx"
     else
         echo "nothing to do"
+        exit 1
 fi
