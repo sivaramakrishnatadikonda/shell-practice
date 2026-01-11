@@ -37,3 +37,14 @@ else
     echo  -e " $Y if mysql is installed ------- nothing to do $N"
 fi
 
+dnf list installed nginx
+if [ $? -ne 0 ]
+then
+    echo -e  "$R if nginx is not installed ------ please install $N"
+    
+    dnf install nginx -y
+    VALIDATE $? "nginx"
+   
+else
+    echo  -e " $Y if nginx is installed ------- nothing to do $N"
+fi
