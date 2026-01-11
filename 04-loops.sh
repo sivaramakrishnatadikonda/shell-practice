@@ -6,9 +6,9 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
-LOG_FLODER= "/var/log/loops.logs"
+LOG_FOLDER= "/var/log/shellscript.logs"
 SCRIPT_NAME= $(echo $0 | cut -d "." -f1)
-LOG_FILE= "$LOG_FLODER/$SCRIPT_NAME .log"
+LOG_FILE= "$LOG_FOLDER/$SCRIPT_NAME .log"
 PACKAGES=("mysql" "nginx" "python")
 
 mkdir -p $LOG_FLODER
