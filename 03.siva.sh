@@ -29,7 +29,7 @@ then
 
 else
     echo "nginx is installed nothing to do"
-    exit 1
+    
 fi
 
 
