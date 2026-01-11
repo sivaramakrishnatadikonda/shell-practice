@@ -8,8 +8,8 @@ N="\e[0m"
 
 LOG_FLODER= "/var/log/shellscript.logs"
 SCRIPT_NAME= $(echo $0 | cut -d "." -f1)
-LOG_FILE= "$LOG_FLODER/$SCRIPT_LOG .log"
-PACKAGES=("mysql" "nginx" "python3")
+LOG_FILE= "$LOG_FLODER/$SCRIPT_NAME .log"
+PACKAGES=("mysql" "nginx" "python")
 
 mkdir -p $LOG_FLODER
 echo "script started executing at : $(date)" | tee -a $LOG_FILE
