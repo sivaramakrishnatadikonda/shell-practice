@@ -39,7 +39,7 @@ for package in $*
 do
 
 dnf list installed $package & >> LOG_FILE
-if [ $? - ne 0 ]
+if [ $? -ne 0 ]
 then
     echo -e "$R $package is not installed ----- going to install it $N" | tee -a $LOG_FILE
 
