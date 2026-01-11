@@ -11,7 +11,7 @@ SCRIPT_NAME= $(echo $0 | cut -d "." -f1)
 LOG_FILE= "$LOG_FOLDER/$SCRIPT_NAME .log"
 PACKAGES=("mysql" "nginx" "python")
 
-mkdir -p $LOG_FLODER
+mkdir -p $LOG_FOLDER
 echo "script started executing at : $(date)" | tee -a $LOG_FILE
 
 
@@ -20,7 +20,7 @@ then
     echo -e " $R ERROR:: please run script with root access $N " | tee -a $LOG_FILE
     exit 1
 else
-    echo -e  " $G you are already run the script with root access $N " | tee -a $LOG_FILE
+    echo -e  " $G you are run script with root access $N " | tee -a $LOG_FILE
 fi
 
 VALIDATE(){
@@ -33,10 +33,18 @@ VALIDATE(){
     fi
 
 }
-for package in $@
+for package in ${ PACKAGES[@]}
 do
 
 dnf list installed $package & >> LOG_FILE
+if [ $? - ne 0 ]
+then
+    echo -e "$R $package is not installed ----- going to install it $N" | tee -a $LOG_FILE
+
 dnf install $package -y & >> LOG_FILE
 VALIDATE $? "$package"
+
+else 
+    echo  -e " $Y $package  is already installed ----nothiong to do $N" | tee -a $LOG_FILE
+fi
 done
