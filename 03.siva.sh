@@ -10,18 +10,7 @@ else
     echo "you are running with root access"
 fi
 
-VALIDATE(){
 
-     if [ $1 - ne 0 ]
-    then
-        echo "$2 installed -------- sucessfully"
-    else
-        echo "$2 not installed ------ failure"
-        exit 1
-    fi
-
-
-}
 
 dnf list installed nginx
 
@@ -30,13 +19,19 @@ then
     echo "nginx is not installed please install"
 
     dnf install nginx -y
-
-    VALIDATE $? "nginx"
+       if [ $? - ne 0 ]
+    then
+        echo "nginx installed -------- sucessfully"
+    else
+        echo "nginx not installed ------ failure"
+        exit 1
+    fi
 
 else
     echo "nginx is installed nothing to do"
     exit 1
 fi
+
 
 dnf list installed mysql
 
@@ -46,7 +41,14 @@ then
 
     dnf install mysql -y
 
-    VALIDATE $? "mysql"
+      if [ $? - ne 0 ]
+    then
+        echo "mysql installed -------- sucessfully"
+    else
+        echo "mysql not installed ------ failure"
+        exit 1
+    fi
+
 
 else
     echo "mysql is installed nothing to do"
