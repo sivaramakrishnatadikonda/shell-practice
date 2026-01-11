@@ -44,6 +44,7 @@ then
       if [ $? - ne 0 ]
     then
         echo "mysql installed -------- sucessfully"
+        
     else
         echo "mysql not installed ------ failure"
         exit 1
@@ -52,6 +53,27 @@ then
 
 else
     echo "mysql is installed nothing to do"
-    exit 1
+    
 fi
 
+dnf list installed python3
+
+if [ $? - ne 0 ]
+then    
+    echo "puthon is not installed please install"
+
+    dnf install python3 -y
+
+      if [ $? - ne 0 ]
+    then
+        echo "python installed -------- sucessfully"
+    else
+        echo "python not installed ------ failure"
+        exit 1
+    fi
+
+
+else
+    echo "python is installed nothing to do"
+    exit 1
+fi
