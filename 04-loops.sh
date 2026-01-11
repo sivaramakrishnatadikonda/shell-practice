@@ -21,3 +21,11 @@ then
 else
     echo  -e " $Y if mysql is installed ------- nothing to do $N"
 fi
+
+dnf install mysql -y
+if [ $? - eq 0 ]
+then
+    echo -e " $G mysql is installed ------ install sucessfully $N"
+else
+    echo -e  " $R mysql is not installed ----- failure $N"
+fi
