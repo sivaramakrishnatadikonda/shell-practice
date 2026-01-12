@@ -10,7 +10,7 @@ SCRIPT_NAME= $(echo $0 | cut -d "." -f1)
 LOG_FILE="$LOGS_FOLDER/$SCRIPT_NAME.log"
 PACKAGES=("mysql" "nginx" "mongodb")
 
-mkdir -p $LOGS_FOLDER
+sudo mkdir -p $LOGS_FOLDER
 echo "script started executing at : $(date)" | tee -a $LOG_FILE
 
 if [ $USERID -ne 0 ]
@@ -31,7 +31,7 @@ VALIDATE(){
     fi 
 }
 
-for package in ${PACKAGES[@]}
+for package in $@
 do
 
 dnf list installed $package
@@ -44,6 +44,6 @@ dnf install $package -y
 VALIDATE $?"installing $package"
 else
     echo -e "$package is already install ---- $Y nothiong to do $N"
-    
+    exit 1
 fi
 done
