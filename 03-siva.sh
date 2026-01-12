@@ -41,9 +41,9 @@ then
 echo -e "$package is not installed ------ install"
 
 dnf install $package -y
-VALIDATE $!"installing $package"
+VALIDATE $?"installing $package"
 else
     echo -e "$package is already install ---- $Y nothiong to do $N"
-    exit 1
+    
 fi
 done
