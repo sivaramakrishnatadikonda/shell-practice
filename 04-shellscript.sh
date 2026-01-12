@@ -6,10 +6,10 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
-LOG_FOLDER= "/var/log/shellscript.logs"
-SCRIPT_NAME= $(echo $0 | cut -d "." -f1)
+LOG_FOLDER= "/var/log/shellscript-logs"
+SCRIPT_NAME= $(echo $0 | cut -d "." -f1) #04-shellscript.sh
 LOG_FILE= " $LOG_FOLDER/$SCRIPT_NAME .log "
-PACKAGES=("mysql" "nginx" "python3")
+PACKAGES=("mysql" "nginx" "python")
 
 mkdir -p $LOG_FOLDER
 echo "script started executing at : $(date)" | tee -a $LOG_FILE
@@ -35,7 +35,8 @@ VALIDATE () {
     fi
 
 }
-for package in $*
+#for package in ${PACKAGES[@]}
+for package in $@
 do
 
 dnf list installed $package & >> LOG_FILE
@@ -43,10 +44,11 @@ if [ $? -ne 0 ]
 then
     echo -e "$R $package is not installed ----- going to install it $N" | tee -a $LOG_FILE
 
-dnf install $package -y & >> LOG_FILE
-VALIDATE $? "$package"
+    dnf install $package -y & >> LOG_FILE
+    VALIDATE $? "$package"
 
 else 
     echo  -e " $Y $package  is already installed ----nothiong to do $N" | tee -a $LOG_FILE
 fi
+
 done
