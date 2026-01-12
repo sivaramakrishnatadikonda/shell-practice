@@ -4,12 +4,14 @@ R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
-PACKAGES=("mysql" "nginx" "mongodb")
+
 LOG_FOLDER= "/var/log/siva-logs"
 SCRIPT_NAME= $(echo $0 | cut -d "." -f1)
 LOG_FILE="$LOG_FOLDER/$SCRIPT_NAME.log"
+PACKAGES=("mysql" "nginx" "mongodb")
 
 mkdir -p $LOG_FOLDER
+
 echo "script started executing at : $(date)" | tee -a $LOG_FILE
 
 if [ $USERID -ne 0 ]
@@ -29,7 +31,7 @@ VALIDATE(){
     fi 
 }
 
-for package in ${$PACKAGES [@]}
+for package in ${PACKAGES [@]}
 do
 
 dnf list installed $package
