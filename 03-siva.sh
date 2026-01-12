@@ -27,6 +27,7 @@ VALIDATE(){
         echo -e "$2 $G install sucessfuly $N "
     else
         echo -e "$2 $R not installed failure $N"
+        exit 1
     fi 
 }
 
@@ -43,5 +44,6 @@ dnf install $package -y
 VALIDATE $!"installing $package"
 else
     echo -e "$package is already install ---- $Y nothiong to do $N"
+    exit 1
 fi
 done
