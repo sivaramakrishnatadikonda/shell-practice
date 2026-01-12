@@ -8,7 +8,7 @@ N="\e[0m"
 LOGS_FOLDER="/var/log/shellscripts-logs"
 SCRIPT_NAME=$(echo $0 | cut -d "." -f1)
 LOG_FILE="$LOGS_FOLDER/$SCRIPT_NAME.log"
-PACKAGES=("mysql" "nginx" "mongod")
+PACKAGES=("mysql" "nginx" "mongodb-org")
 
 mkdir -p $LOGS_FOLDER
 echo "script started executing at : $(date)" | tee -a $LOG_FILE
@@ -34,13 +34,13 @@ VALIDATE(){
 for package in ${PACKAGES[@]}
 do
 
-dnf list installed $package
+dnf list installed $package &>>$LOG_FILE
 
 if [ $? -ne 0 ]
 then
 echo -e "$package is not installed ------ install"
 
-dnf install $package -y
+dnf install $package -y &>>$LOG_FILE
 VALIDATE $?"installing $package"
 else
     echo -e "$package is already install ---- $Y nothiong to do $N"
