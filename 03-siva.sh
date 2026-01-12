@@ -15,18 +15,19 @@ echo "script started executing at : $(date)" | tee -a $LOG_FILE
 
 if [ $USERID -ne 0 ]
 then
-    echo -e "$R ERROR:: please run the root access $N"
-    exit 1
+    echo -e "$R ERROR:: please run the root access $N" | tee -a $LOG_FILE
+    exit 1 # give other than 0 upto 127
 else   
-    echo -e "$G you are running script with root access $N"
+    echo -e "$G you are running script with root access $N" | tee -a $LOG_FILE
 
 fi
+# validate functions takes input as exit status what command they tried to install
 VALIDATE(){
     if [ $1 -eq 0 ]
     then
-        echo -e "$2 $G install sucessfuly $N "
+        echo -e "$2 $G install sucessfuly $N " | tee -a $LOG_FILE
     else
-        echo -e "$2 $R not installed failure $N"
+        echo -e "$2 $R not installed failure $N" | tee -a $LOG_FILE
         exit 1
     fi 
 }
@@ -38,12 +39,12 @@ dnf list installed $package &>>$LOG_FILE
 
 if [ $? -ne 0 ]
 then
-echo -e "$package is not installed ------ install"
+echo -e "$package is not installed ------ install" | tee -a $LOG_FILE
 
 dnf install $package -y &>>$LOG_FILE
-VALIDATE $?"installing $package"
+VALIDATE $? "installing $package"
 else
-    echo -e "$package is already install ---- $Y nothiong to do $N"
+    echo -e "$package is already install ---- $Y nothiong to do $N" | tee -a $LOG_FILE
     
 fi
 done
